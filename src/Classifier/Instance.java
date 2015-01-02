@@ -6,23 +6,24 @@ import java.util.ArrayList;
  * Tuple of features and an optional classification
  * 
  * @author Tilman & Tim
+ * @param <T>
  *
  */
-public class Instance {
+public class Instance<T> {
 
-	private ArrayList<String> features;
+	private ArrayList<T> features;
 	private String classification;
 	
-	public Instance(ArrayList<String> features, String classification){
+	public Instance(ArrayList<T> features, String classification){
 		this.features = features;
 		this.classification = classification;
 	}
 	
-	public String getFeature(int index){
+	public T getFeature(int index){
 		return features.get(index);
 	}
 	
-	public String removeFeature(int index){
+	public T removeFeature(int index){
 		return features.remove(index);
 	}
 	
@@ -36,7 +37,7 @@ public class Instance {
 	
 	public String toString(){
 		String res = "Instance( ";
-		for(String s : features)
+		for(T s : features)
 			res += s + ", ";
 		res += ") class: " + classification;
 		return res;
