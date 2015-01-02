@@ -76,11 +76,11 @@ public class MetaDataReader {
 	 * 
 	 * @return list of domains
 	 */
-	public ArrayList<Domain> readDomains() {
+	public ArrayList<Domain<String>> readDomains() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(name));
 
-			ArrayList<Domain> res = new ArrayList<Domain>();
+			ArrayList<Domain<String>> res = new ArrayList<Domain<String>>();
 
 			try {
 				String str;
@@ -106,13 +106,13 @@ public class MetaDataReader {
 		}
 	}
 
-	private Domain stringToDomain(String str) {
+	private Domain<String> stringToDomain(String str) {
 		
 		String name = str.substring(0, str.indexOf(':')+1).replace(':', ' ').trim();
 		String[] split = str.substring(str.indexOf(':')+1).replace('.', ' ').trim().split(",");
 		for(int i = 1; i < split.length; i++)
 			split[i] = split[i].substring(1);
-		return new Domain(name, split);
+		return new Domain<String>(name, split);
 	}
 
 }

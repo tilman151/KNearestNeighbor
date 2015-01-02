@@ -34,16 +34,16 @@ public class InstanceReader {
 	 * 
 	 * @return Training set of instances
 	 */
-	public Trainingset readInstances() {
+	public Trainingset<String> readInstances() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(name));
 			
-			Trainingset res = new Trainingset();
+			Trainingset<String> res = new Trainingset<>();
 			
 			try {
 				String str;
 				while ((str = reader.readLine()) != null){
-					Instance i = stringToInstance(str);
+					Instance<String> i = stringToInstance(str);
 					res.addInstance(i);
 				}
 				reader.close();
@@ -59,13 +59,13 @@ public class InstanceReader {
 		}
 	}
 
-	private Instance stringToInstance(String str) {
+	private Instance<String> stringToInstance(String str) {
 		ArrayList<String> features = new ArrayList<String>(); 
 		String[] split = str.split(",");
 		for(int i = 0; i < split.length - 1; i++){
 			features.add(split[i]);
 		}
-		Instance i = new Instance(features, split[split.length - 1]);
+		Instance<String> i = new Instance<>(features, split[split.length - 1]);
 		return i;
 	}
 

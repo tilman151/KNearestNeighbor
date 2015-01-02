@@ -37,12 +37,19 @@ public class Domain<T> {
 		return res + ")";
 	}
 	
-	public int indexOf(T value){
+	//public int indexOf(T value){
+	//	for(int i = 0; i < values.length; i++){
+	//		if(values[i] == value)
+	//			return i;
+	//	}
+	//	return -1;
+	//}
+	
+	public int indexOf(String value){
 		for(int i = 0; i < values.length; i++){
-			if(values[i] == value)
+			if(((String) values[i]).compareTo(value) == 0)
 				return i;
 		}
 		return -1;
 	}
-	
 }
