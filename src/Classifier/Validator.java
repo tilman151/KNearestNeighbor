@@ -8,7 +8,7 @@ public class Validator {
 		this.classifier = c;
 	}
 	
-	public double validateOnTestSet(Trainingset testSet){
+	public double validateOnTestSet(Trainingset<Integer> testSet){
 		
 		int wronglyClassified = 0;
 		
