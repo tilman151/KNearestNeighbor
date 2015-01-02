@@ -8,31 +8,32 @@ import java.util.HashMap;
  * Training set for decision trees; contains instances, possible classes and domains of features
  * 
  * @author Tilman & Tim
+ * @param <T>
  *
  */
-public class Trainingset {
+public class Trainingset<T> {
 
-	private ArrayList<Instance> instances;
-	private ArrayList<Domain> domains;
+	private ArrayList<Instance<T>> instances;
+	private ArrayList<Domain<T>> domains;
 	private ArrayList<String> classes;
 	
 	public Trainingset(){
-		instances = new ArrayList<Instance>();
-		domains = new ArrayList<Domain>();
+		instances = new ArrayList<Instance<T>>();
+		domains = new ArrayList<Domain<T>>();
 		classes = new ArrayList<String>();
 	}
 	
-	public Trainingset(ArrayList<Domain> domains, ArrayList<String> classes){
+	public Trainingset(ArrayList<Domain<T>> domains, ArrayList<String> classes){
 		this.domains = domains;
 		this.classes = classes;
-		instances = new ArrayList<Instance>();
+		instances = new ArrayList<Instance<T>>();
 	}
 	
-	public void addInstance(Instance i){
+	public void addInstance(Instance<T> i){
 		instances.add(i);
 	}
 	
-	public void setDomains(ArrayList<Domain> domains){
+	public void setDomains(ArrayList<Domain<T>> domains){
 		this.domains = domains;
 	}
 	
@@ -44,7 +45,7 @@ public class Trainingset {
 		return classes;
 	}
 	
-	public ArrayList<Domain> getDomains(){
+	public ArrayList<Domain<T>> getDomains(){
 		return domains;
 	}
 	
@@ -56,15 +57,15 @@ public class Trainingset {
 		return domains.size();
 	}
 	
-	public Domain getDomain(int i){
+	public Domain<T> getDomain(int i){
 		return domains.get(i);
 	}
 	
-	public Instance getInstance(int i){
+	public Instance<T> getInstance(int i){
 		return instances.get(i);
 	}
 	
-	public Instance getRandomInstance(){
+	public Instance<T> getRandomInstance(){
 		return instances.get((int) (Math.random()*instances.size()));
 	}
 	
@@ -113,7 +114,7 @@ public class Trainingset {
 	
 	public HashMap<String, Integer> getClassMemberCount() {
 		HashMap<String,Integer> classes = new HashMap<String,Integer>();
-		for(Instance i : instances){
+		for(Instance<T> i : instances){
 			if(classes.containsKey(i.getClassification())){
 				classes.put(i.getClassification(), classes.get(i.getClassification()) + 1);
 			}
@@ -123,33 +124,10 @@ public class Trainingset {
 		return classes;
 	}
 
-	/**
-	 * Splits the training set into smaller sets on a specified feature of the instances
-	 * 
-	 * @param 
-	 * feature feature to split at
-	 * 
-	 * @return List of training sets
-	 */
-	public ArrayList<Trainingset> splitAtFeature(int feature){
-		ArrayList<Trainingset> res = new ArrayList<Trainingset>();
-		for(int i = 0; i < domains.get(feature).size(); i++)
-			res.add(new Trainingset(domains, classes));
-		
-		for(Instance i : instances){
-			String instanceFeature = i.getFeature(feature);
-			int index = 0;
-			while(domains.get(feature).getValue(index).compareTo(instanceFeature) != 0)
-				index++;
-			res.get(index).addInstance(i);
-		}
-		
-		return res;
-	}
 	
-	public Trainingset splitUpTestSet(int percentage){
+	public Trainingset<T> splitUpTestSet(int percentage){
 		
-		Trainingset testset = new Trainingset(domains, classes);
+		Trainingset<T> testset = new Trainingset<T>(domains, classes);
 		int testsetsize =  (int) (instances.size()*percentage/(double) 100);
 		
 		for(int i = 0; i < testsetsize; i++){

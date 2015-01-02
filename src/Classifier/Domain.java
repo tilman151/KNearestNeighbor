@@ -4,19 +4,20 @@ package Classifier;
  * Domain of a feature
  * 
  * @author Tilman & Tim
+ * @param <T>
  *
  */
-public class Domain {
+public class Domain<T> {
 
 	protected String name;
-	protected String[] values;
+	protected T[] values;
 	
-	public Domain(String name, String[] values){
+	public Domain(String name, T[] values){
 		this.name = name;
 		this.values = values;
 	}
 	
-	public String getValue(int index){
+	public T getValue(int index){
 		return values[index];
 	}
 	
@@ -30,15 +31,15 @@ public class Domain {
 	
 	public String toString(){
 		String res = name + "(";
-		for(String s : values){
+		for(T s : values){
 			res += s + ",";
 		}
 		return res + ")";
 	}
 	
-	public int indexOf(String value){
+	public int indexOf(T value){
 		for(int i = 0; i < values.length; i++){
-			if(values[i].compareTo(value) == 0)
+			if(values[i] == value)
 				return i;
 		}
 		return -1;
