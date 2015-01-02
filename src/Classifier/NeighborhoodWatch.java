@@ -1,6 +1,6 @@
 package Classifier;
 
-public class NeighborhoodWatch extends Classifier {
+public class NeighborhoodWatch implements IClassifier {
 
 	@Override
 	public String classify(Instance i) {
