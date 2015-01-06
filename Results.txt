@@ -1,0 +1,35 @@
+KNearestNeighbor
+---------------------------------------------------------------------------------
+
+Format of Confusion Matrix:
+
+		|	classified class 1	|	classified class 2	|
+real class 1	|		1		|		0		|
+real class 2	|		0		|		1		|
+
+---------------------------------------------------------------------------------
+
+Enter k: 1
+Mean error over 100 samples: 0.12131578947368482
+	 | 	unacc	 | 	acc	 | 	good	 | 	vgood	 | 	
+unacc  	 | 	393	 | 	3	 | 	0	 | 	0	 | 	
+acc  	 | 	41	 | 	88	 | 	0	 | 	0	 | 	
+good  	 | 	0	 | 	15	 | 	9	 | 	0	 | 	
+vgood  	 | 	0	 | 	7	 | 	0	 | 	14	 | 	
+
+---------------------------------------------------------------------------------
+
+Enter k: 5
+Mean error over 100 samples: 0.0920000000000003
+	 | 	unacc	 | 	acc	 | 	good	 | 	vgood	 | 	
+unacc  	 | 	387	 | 	1	 | 	0	 | 	0	 | 	
+acc  	 | 	43	 | 	92	 | 	0	 | 	0	 | 	
+good  	 | 	2	 | 	13	 | 	8	 | 	0	 | 	
+vgood  	 | 	0	 | 	7	 | 	4	 | 	13	 | 	
+
+---------------------------------------------------------------------------------
+
+Comparison to NaiveBayes:
+
+	Similar results for Naive Bayes and 1-Nearest-Neighbor. 5-Nearest-Neighbor is far more 
+	accurate, but slower.

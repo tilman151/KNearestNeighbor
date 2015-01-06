@@ -28,7 +28,7 @@ public class NeighborhoodWatch implements IClassifier {
 	}
 	
 	/*
-	 * so far, we dont weight the distances of different features
+	 * so far, we don't weight the distances of different features
 	 */
 	private int distance(Instance<Integer> i, Instance<Integer> j){
 		
